@@ -19,10 +19,86 @@ class List(list):
 
 
 if __name__ == '__main__':
+
+    l = List()
+    print(l)
+    l2 = []
+    l = List(l2)
+    print(l)
+
     l = List([
-            [[1, 2, 3, 33], [4, 5, 6, 66]],
-            [[7, 8, 9, 99], [10, 11, 12, 122]],
-            [[13, 14, 15, 155], [16, 17, 18, 188]]
+        [],
+        [[], []],
+        [[], [], []]
     ])
-    l[0, 0, 0] = [1, 1, 1, 1, 1]
+
+    # # show prints
+    # print(l)
+    # print(l[0])
+    # print(l[1])
+    # print(l[2])
+    
+    # # building our own self List
+    # # add values and print them
+    # # int value
+    # l[0] = 5
+    # print(l[0])
+    # print(l)
+    # l[0] = [-5]
+    # print(l[0])
+    # print(l)
+    # l[0] = [5, 0, 3]
+    # print(l[0])
+    # print(l)
+    #
+    # # adding float value and insert list of lists (multi dimensions
+    # l[1] = 5.2
+    # print(l[1])
+    # print(l)
+    # l[1] = [9.4]
+    # print(l[1])
+    # print(l)
+    # l[1] = [7.7, 0.2, -4.5]
+    # print(l[1])
+    # print(l)
+    # l[1] = [l[1], l[0]]
+    # print(l[1])
+    # print(l)
+    #
+    # # add string values
+    # l[2] = "matan"
+    # print(l[2])
+    # print(l)
+    # l[2] = ["matan", "guy"]
+    # print(l[2])
+    # print(l)
+    # l[2] = [["matan", -1.5], [], ["1", ["inside list"], 999]]
+
+    l = List([
+        [5, 0, 3],
+        [[7.7, 0.2, -4.5], [5, 0, 3]],
+        [["matan", -1.5], [], ["1", ["inside list", "second place"], 999]]
+    ])
+    print(l)
+
+    # prints
+    print(l[0, 2])
+    print(l[1, 1])
+    print(l[2, 1])
+    print(l[1, 0, 0])
+    print(l[2, 0, 1])
+    print(l[2, 2])
+    print(l[2, 2, 1])
+    print(l[2, 2, 1, 1])
+    print(l)
+
+    # changing values inside the multi list (List)
+    l[0, 2] = [3, 3]
+    l[1, 1] = "503"
+    l[2, 1] = -0.5
+    l[1, 0, 0] = ["nir"]
+    l[2, 0, 1] = [[[]]]
+    l[2, 2] = [1.5, [-1.5]]
+    l[2, 2, 1] = [[1, -.9, "multi type list"], []]
+    l[2, 2, 1, 1] = 7
     print(l)
