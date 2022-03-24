@@ -2,6 +2,8 @@ class List(list):
     def __getitem__(self, args):
         if type(args) is int:
             return super().__getitem__(args)
+        if type(args) is dict:
+            raise TypeError
         if len(args) >= 1:
             ret = super().__getitem__(args[0])
             for i in range(1, len(args)):
@@ -11,6 +13,8 @@ class List(list):
     def __setitem__(self, args, value):
         if type(args) is int:
             super().__setitem__(args, value)
+        if type(args) is dict:
+            raise TypeError
         elif len(args) >= 1:
             ret = super().__getitem__(args[0])
             for i in range(1, len(args)-1):
@@ -20,12 +24,14 @@ class List(list):
 
 if __name__ == '__main__':
 
+    # empty list and casting
     l = List()
     print(l)
     l2 = []
     l = List(l2)
     print(l)
 
+    # building our own list
     l = List([
         [],
         [[], []],
@@ -37,8 +43,7 @@ if __name__ == '__main__':
     # print(l[0])
     # print(l[1])
     # print(l[2])
-    
-    # # building our own self List
+
     # # add values and print them
     # # int value
     # l[0] = 5
@@ -93,7 +98,7 @@ if __name__ == '__main__':
     print(l)
 
     # changing values inside the multi list (List)
-    l[0, 2] = [3, 3]
+    l[0, 2] = {1: "1", 2: "6"}
     l[1, 1] = "503"
     l[2, 1] = -0.5
     l[1, 0, 0] = ["nir"]
@@ -102,3 +107,24 @@ if __name__ == '__main__':
     l[2, 2, 1] = [[1, -.9, "multi type list"], []]
     l[2, 2, 1, 1] = 7
     print(l)
+
+    # checking some values to be sure
+    if l[2, 1] != -0.5:
+        raise ValueError
+    if l[1, 0, 0] != ['nir']:
+        raise ValueError
+    if l[0, 2] != {1: '1', 2: '6'}:
+        raise ValueError
+    if l[2, 2, 1] != [[1, -0.9, 'multi type list'], 7]:
+        raise ValueError
+
+    # TypeError
+    try:
+        l["4"] = "not good"
+    except TypeError:
+        print("successfully catch typeError")
+
+    try:
+        l[{1: "a"}] = "don't do that"
+    except TypeError:
+        print("successfully catch typeError")
